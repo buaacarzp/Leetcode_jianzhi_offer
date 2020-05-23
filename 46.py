@@ -21,7 +21,7 @@ res = sol.translateNum(nums)
 print(res)
 '''
 题解版本
-测试更新许可证
+测试更新许可证1
 '''
 class Solution:
     def translateNum(self, num: int) -> int:
