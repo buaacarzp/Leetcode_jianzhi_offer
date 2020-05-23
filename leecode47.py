@@ -1,23 +1,23 @@
-'''
-list在哈希中不能去重，所以该如何写
-'''
 from typing import List
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        def back_track(nums,temp):
-            if len(nums)==0:
-                res_all.append(temp)
-            for i in range(len(nums)):
-                if  i>0 and nums[i]==nums[i-1]:
-                    continue
-                else:
-                    back_track(nums[:i]+nums[i+1:],temp+[nums[i]])       
-        temp=[]
-        res_all=[]
         nums.sort()
-        back_track(nums,temp)
-        return res_all
-nums =[1,1,2,2]
+        res = []
+        visited = set()
+        def backtrack(nums, tmp):
+            if len(nums) == len(tmp):
+                res.append(tmp)
+                return
+            for i in range(len(nums)):
+                if i in visited :#or (i > 0 and i - 1 not in visited and nums[i-1] == nums[i]):
+                    continue
+                visited.add(i)
+                backtrack(nums, tmp + [nums[i]])
+                visited.remove(i)
+        backtrack(nums, [])
+        return res
+
+nums =[1,1,2]
 sol = Solution()
 res =sol.permuteUnique(nums)
 print(res)
