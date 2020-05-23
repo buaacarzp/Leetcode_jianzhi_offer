@@ -11,11 +11,10 @@ class Solution:
                 if  i>0 and nums[i]==nums[i-1]:
                     continue
                 else:
-                    back_track(nums[:i]+nums[i+1:],temp+[nums[i]])
-                    
-                
+                    back_track(nums[:i]+nums[i+1:],temp+[nums[i]])       
         temp=[]
         res_all=[]
+        nums.sort()
         back_track(nums,temp)
         return res_all
 nums =[1,1,2,2]
