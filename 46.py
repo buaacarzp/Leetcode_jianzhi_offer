@@ -1,21 +1,18 @@
 class Solution:
-    def __init__(self):
-        self.cnt=0
-    def translateNum(self, nums: int) -> int:
-        left=right=0
-        if len(nums)==1:
-            self.cnt+=1
-            return 1
-        else:
-            left += self.translateNum(nums[1:]) 
-        if len(nums)==2:
-            self.cnt+=1+left
-            return 1+left
-        else:
-            right += self.translateNum(nums[2:])
-        print("debug->")
-        return left+right 
+    def translateNum(self, num: int) -> int:
+        def back_track(nums,temp):
+            if len(nums)==0:
+                res_all.append(temp)
+                return 
+            
+            back_track(nums[1:],temp+'|'+nums[:1]+'|')
+            if len(nums)>=2:
+                back_track(nums[2:],temp+'|'+nums[:2]+'|')
+        temp = ''
+        res_all=[]
+        back_track(num,temp)
+        return res_all
 nums ='12258'
-sol = Solution()
+sol =Solution()
 res = sol.translateNum(nums)
 print(res)
